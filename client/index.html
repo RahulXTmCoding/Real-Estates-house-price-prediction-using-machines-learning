@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Price Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+	<link rel="stylesheet" href="app.css">
+	
+
+</head>
+<body>
+<div class="img"></div>
+<nav class="navbar navbar-light bg-dark">
+        <span class="navbar-text">
+            <h1>House Price Predictor</h1>
+        </span>
+    </nav>
+<div class='container' >
+	<div id='cont'>
+  <center>
+  	<a href="#" onclick="model1Open()">
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		Global Price Prediction
+  	</a>
+  	<a href="#" onclick="model2Open()">
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  	      Bengaluru Region Prediction
+  </a>
+
+  <a href="#" onclick="openAbout()">
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  	      About Project
+  </a>
+</center>
+</div>
+
+<div style='display: none;' id='model1'>
+
+	<a href="#" onclick="openIndex()" style='width:110px;font-size: 1em;margin: 0px;' id='mod1'>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		Back
+  	</a>
+	<center>
+    <form class='form' id='form1'>
+        <div class="form-group">
+            <br><h2>Rooms:</h2>
+
+            <input name="bedrooms" type="number" class="form-control" required>
+            <br>
+
+            <h2>Bathroom:</h2>
+            <input name="bathrooms" type="number" class="form-control" required>
+            <br>
+            <h2>Building Area:(Square Feet)</h2>
+            <input name="sqft_lv" type="number" class="form-control" required>
+            <br>
+
+          <h2>Total Area:(Square Feet)</h2>
+            <input name="sqft_lot" type="number" class="form-control" required>
+            <br>
+
+            <h2>Floors:</h2>
+            <input name="floors" type="number" class="form-control" required>
+            <br>
+
+           <h2>Condition:(1-5)</h2>
+            <input name="condition" type="number" class="form-control" required>
+            <br>
+
+           <h2>Grade:(1-10)</h2>
+            <input name="grade" type="number" class="form-control" required>
+            <br><h2> Roof Area:(Square Feet)</h2>
+
+           
+            <input name="sqft_above" type="number" class="form-control" required>
+            <br>
+
+            <h2>Basement Area:(Square Feet)</h2>
+            <input name="sqft_basement" type="number" class="form-control" required>
+            <br>
+
+            <h2>Lattitude</h2>
+            <input name="lat" type="number" class="form-control" required><br>
+                <h2>Longtitude</h2>
+            <input name="longg" type="number" class="form-control" required>
+
+            <br>
+         
+            <button class="submit" onclick="onClickedEstimatePrice1()" type="button">Estimate Price</button>
+
+
+
+
+        </div>
+
+    </form>
+
+   <div id="uiEstimatedPrice2" class="result">	<h2></h2> </div>
+
+
+
+</center>
+
+</div>
+
+
+
+
+<div style='display: none;' id='model2'>
+<a href="#" onclick="openIndex()" style='width:110px;font-size: 1em;margin: 0px;' id='mod2'>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		Back
+  	</a>
+<form class="form">
+	<h2>Area (Square Feet)</h2>
+    <input class="area"  type="email" id="uiSqft" class="floatLabel" name="Squareft" value="1000">
+	<h2>BHK</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
+		<label for="radio-bhk-1">1</label>
+		<input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked/>
+		<label for="radio-bhk-2">2</label>
+		<input type="radio" id="radio-bhk-3" name="uiBHK" value="3"/>
+		<label for="radio-bhk-3">3</label>
+		<input type="radio" id="radio-bhk-4" name="uiBHK" value="4"/>
+		<label for="radio-bhk-4">4</label>
+		<input type="radio" id="radio-bhk-5" name="uiBHK" value="5"/>
+		<label for="radio-bhk-5">5</label>
+	</div>
+	</form>
+<form class="form">
+	<h2>Bath</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bath-1" name="uiBathrooms" value="1"/>
+		<label for="radio-bath-1">1</label>
+		<input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked/>
+		<label for="radio-bath-2">2</label>
+		<input type="radio" id="radio-bath-3" name="uiBathrooms" value="3"/>
+		<label for="radio-bath-3">3</label>
+		<input type="radio" id="radio-bath-4" name="uiBathrooms" value="4"/>
+		<label for="radio-bath-4">4</label>
+		<input type="radio" id="radio-bath-5" name="uiBathrooms" value="5"/>
+		<label for="radio-bath-5">5</label>
+	</div>
+		<h2>Location</h2>
+	<div>
+  <select class="location" name="" id="uiLocations">
+    <option value="" disabled="disabled" selected="selected">Choose a Location</option>
+		<option>Electronic City</option>
+        <option>Rajaji Nagar</option>
+  </select>
+</div>
+	<button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
+
+	<div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
+
+
+
+
+</div>
+
+
+<div style='display: none;' id='about'>
+<a href="#" onclick="openIndex()" style='width:110px;font-size: 1em;float: left;margin: 0px;' id='mod3'>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		<span></span>
+  		Back
+  	</a>
+<div class='about' style=' padding-top: 40px;'>
+	
+<center><h1>Introduction</h1></center>
+</div>
+<br>
+<div class='about'>
+	
+<p>
+The development of a housing prices prediction model can assist a house seller or a real estate agent to make better-informed decisions based on house price valuation. Only a few works report the use of machine learning (ML) algorithms to predict the values of properties in Bangalore.<br>
+
+Our objective is to develop a model that has the capacity of predicting the value of house price for some given features.
+
+
+</p>
+
+</div>
+<div>
+	<center><img src="block.png" style='width: 800px;height: 350px;'></center>
+</div>
+<br>
+<div class='about'>
+	
+<center><h1>References</h1></center>
+
+<p>
+	[1]V. Roman, “Machine Learning Project: Predicting Boston House Prices With Regression,” Medium, 10-Mar-2019. [Online]. Available: https://towardsdatascience.com/machine-learning-project-predicting-boston-house-prices-with-regression-b4e47493633d. [Accessed: 22-Feb-2020].<br><br>
+[2]Wu, Jiao Yang. "Housing Price prediction Using Support Vector Regression." (2017).<br><br>
+[3][NEELAM SHINDE.“VALUATION OF HOUSE PRICES USING PREDICTIVE TECHNIQUES ”<br><br>
+[4]Nehal N Ghosalkar, “Real Estate Value Prediction Using Linear Regression”, 2018.<br> <br>
+[5]Ryan, “Project 4: House Prices Predictions,” UnsupervisedLearning, 26-Nov-2017. [Online]. Available: http://unsupervisedlearning.co.uk/2017/11/26/project-4-house-prices-predictions/. [Accessed: 28-Feb-2020].<br><br>
+[6]Leo Breiman. “Random forests”. In: Machine learning 45.1 (2001), pp. 5–32.<br><br>
+[7]Hujia Yu and Jiafu Wu (2016), “Real Estate Price Prediction with Regression and Classification”, CS 229 Autumn 2016 Project Final Report.<br><br>
+</p>
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<center><div style='bottom: 5px;left: 45%;right: 45%;width: 10%;color: white ;font-size: 20px;'>&copyUEC</div></center>
+
+</body>
+</html>
